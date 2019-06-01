@@ -1,6 +1,7 @@
 #include "CCtrlDashBoard.h"
 #include <QPainter>
 #include <QDebug>
+#include <qmath.h>
 
 CCtrlDashBoard::CCtrlDashBoard(QWidget *parent, StyleType type) :
     QWidget(parent),
@@ -99,7 +100,7 @@ void CCtrlDashBoard::drawScaleDials(QPainter *painter, qreal hlafWidth)
     {
         if (i % 10 == 0)//整数刻度显示加粗
         {
-            sina = sin(startRad - i * deltaRad);
+            sina = qSin(startRad - i * deltaRad);
             cosa = cos(startRad - i * deltaRad);
 
             tmpVal = 1.0 * i *((m_MaxValue - m_MinValue) / tSteps) + m_MinValue;

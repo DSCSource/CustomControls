@@ -1,5 +1,6 @@
 #include "CCtrlProgressWater.h"
 #include <QPainter>
+#include <qmath.h>
 
 CCtrlProgressWater::CCtrlProgressWater(QWidget *parent, PercentStyle style) :
     QWidget(parent),
@@ -147,9 +148,9 @@ void CCtrlProgressWater::drawValue(QPainter* painter, qreal hlafWidth)
     }
     for(int x = startX; x <= endX; x++) {
         //第一条波浪Y轴
-        double waterY1 = (double)(A * sin(w * x + m_Offset)) + k;
+        double waterY1 = (double)(A * qSin(w * x + m_Offset)) + k;
         //第二条波浪Y轴
-        double waterY2 = (double)(A * sin(w * x + m_Offset + (endX / 2 * w))) + k;
+        double waterY2 = (double)(A * qSin(w * x + m_Offset + (endX / 2 * w))) + k;
         //如果当前值为最小值则Y轴为右下角Y轴
         if (m_ProgValue == m_MinValue) {
             waterY1 = endY;
